@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -62,6 +65,12 @@ public class Pessoa implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	@JsonIgnore
+	@Transient
+	public Boolean isInativo() {
+		return !this.ativo;
 	}
 
 	@Override
